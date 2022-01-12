@@ -3,8 +3,8 @@ import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, of, from} from 'rxjs';
 import { APIUrl,HeaderInfo } from '../enums/emums';
-import { FetchBillReq,TransactionReq, RechargeReportReq, LedgerReportReq, RefundRequestReq,PGWebRequestModel, PGStatusCheckRequestModel, CommonWeRequest } from '../enums/apiRequest';
-import {  BalanceResp,CouponDetail,NumberListResp,PGInitiatePGResponse, TransectionResp, WebAppUserProfileResp, WebMemberTypeModel} from '../enums/apiResponse';
+import { FetchBillReq,TransactionReq, RechargeReportReq, LedgerReportReq, RefundRequestReq,PGWebRequestModel, PGStatusCheckRequestModel, CommonWeRequest, WebWTWUserInfo } from '../enums/apiRequest';
+import {  BalanceResp,CommonResp,CouponDetail,NumberListResp,PGInitiatePGResponse, TransectionResp, WebAppUserProfileResp, WebMemberTypeModel} from '../enums/apiResponse';
 import { AuthService } from './auth.service'
 
 @Injectable({
@@ -130,4 +130,19 @@ export class ApisessionService {
       catchError(this.handleError<NumberListResp>('GetPaymentMode'))
     );
   }
+
+  GetUserInfo(req): Observable<WebWTWUserInfo> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<WebWTWUserInfo>(APIUrl.BaseURL + APIUrl.GetUserInfo, req, httpOptions).pipe(
+      catchError(this.handleError<WebWTWUserInfo>('GetUserInfo'))
+    );
+  }
+
+  WalletToWalleTransfer(req): Observable<CommonResp> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<CommonResp>(APIUrl.BaseURL + APIUrl.WalletToWalleTransfer, req, httpOptions).pipe(
+      catchError(this.handleError<CommonResp>('WalletToWalleTransfer'))
+      );
+  }
+
 }

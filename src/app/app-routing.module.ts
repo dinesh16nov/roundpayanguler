@@ -41,6 +41,7 @@ import { HospitalComponent } from './content/pagecontainer/hospital/hospital.com
 import { EducationFessComponent } from './content/pagecontainer/educationFess/educationFess.component';
 import { ClubsAndAssociationComponent } from './content/pagecontainer/clubsAndAssociation/clubsAndAssociation.component';
 import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociationFee/barAssociationFee.component';
+import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.component';
 const routes: Routes = [
   { path: '', redirectTo: '/prepaid.html', pathMatch: 'full' },
   { path: 'user', component:ReportsComponent,
@@ -49,7 +50,8 @@ const routes: Routes = [
       {path:'wallet.html',component:WalletComponent, canActivate:[AuthGuard]},
       {path:'transaction.html',component:TransactionComponent, canActivate:[AuthGuard]},
       {path:'profile.html',component:ProfileComponent, canActivate:[AuthGuard]},
-      {path:'membershipUpdate.html',component:MembershipUpdateComponent,canActivate:[AuthGuard]}
+      { path: 'membershipUpdate.html', component: MembershipUpdateComponent, canActivate: [AuthGuard]},
+      { path: 'wallettowalletComponent.html', component: WalletToWalletComponent, canActivate: [AuthGuard]}
     ]
   },
   { 

@@ -1,0 +1,56 @@
+
+<div class="container-box">
+  <div class="header">
+    Wallet To Wallet Fund Transfer
+  </div>
+  <div class="content">
+
+
+    <div class="scroll-content" id="dvUserInfo">
+
+      <div class="form-group">
+        <label class="lbl" for="txtCustNo">Customer No.</label>
+        <div class="input-group">
+          <input class="form-control" autofocus type="tel" maxlength="10" [(ngModel)]="MobileNo" (ngModelChange)="MobileNumberChange()" placeholder="Enter Mobile No." tabindex="1">
+
+        </div>
+        <span class="text-info text-cap" *ngIf="Userdatadata==1">{{OutletName}}</span><span *ngIf="Userdatadata==1" class="text-small text-info"> [ {{UserID}} ] </span>
+
+        <span *ngIf="Userdatadata==2 " class="text-danger">{{Msg}}</span>
+      </div>
+
+    </div>
+
+    <div class="scroll-content">
+
+      <div class="form-group">
+        <label class="lbl" for="txtAmount">Amount</label>
+        <div class="input-group">
+          <input class="form-control" id="txtAmount" [(ngModel)]="Amount" maxlength="10" placeholder="Enter Amount" tabindex="1" type="number">
+        </div>
+        <small id="amountHelp" class="form-text text-muted d-none"></small>
+        <span *ngIf="Userdatadata==4" class="text-danger">{{Msg}}</span>
+      </div>
+
+      <div class="form-group">
+        <label class="lbl" for="txtRemark">Remark</label>
+        <textarea aria-describedby="remarkHelp" [(ngModel)]="Remark" class="form-control" id="txtRemark" placeholder="Enter Remark" tabindex="3"></textarea>
+        <small id="remarkHelp" class="form-text text-muted d-none"></small>
+      </div>
+
+
+       
+    </div>
+    <aditya-pageloader *ngIf="isloader"></aditya-pageloader>
+    <div class="scroll-content text-center">
+      <p *ngIf="Userdatadata==3" class="text-danger">{{Msg}}</p>
+      <p *ngIf="Userdatadata==5" class="text-info">{{Msg}}</p>
+      <button type="button" [disabled]="isDisabled" (click)="proceedToPay()" class="btn" tabindex="7">Submit</button>
+
+
+    </div>
+  </div>
+
+
+</div>
+

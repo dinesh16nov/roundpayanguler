@@ -63,6 +63,8 @@ export enum APIUrl {
   GetBanner = "GetBanner",
   ForgetPassword = "ForgetPassword",
   GetPaymentMode = 'GetPaymentMode',
+  GetUserInfo = 'GetUserInfo',
+  WalletToWalleTransfer ='WalletToWalletTransfer',
   DomainName = 'Prechargepay',
   // Domain='http://localhost:44338/',
   // Domain='https://admin.prechargepay.in/',

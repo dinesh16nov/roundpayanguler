@@ -396,3 +396,8 @@ export interface TransectionResp {
   getID: number;
 }
 //#endregion
+
+export interface CommonResp {
+  msg: string;
+  statuscode: number;
+}

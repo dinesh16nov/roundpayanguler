@@ -65,6 +65,7 @@ import { ClubsAndAssociationComponent } from './content/pagecontainer/clubsAndAs
 import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociationFee/barAssociationFee.component';
 import { TimerComponent } from './content/timer/timer.component';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     MobileheaderComponent,
     DesktopheaderComponent,
     MembershipUpdateComponent,
-    TimerComponent
+    TimerComponent,
+    WalletToWalletComponent
   ],
   imports: [
     BrowserModule,

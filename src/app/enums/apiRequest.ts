@@ -123,4 +123,26 @@ export interface CommonWeRequest{
   {
       loginTypeID:number,
       pG:PaymentGateway
-  }
+}
+
+export interface WebWTWUserInfo
+{
+  statuscode: number,
+  msg: string,
+  wtwuserinfo: WTWUserInfo
+
+}
+
+export interface WTWUserInfo
+{
+  statuscode: number,
+  msg: string,
+  userID: number,
+  outletName:string
+}
+
+
+export interface WTWMobile {
+  
+  MobileNo: number
+}

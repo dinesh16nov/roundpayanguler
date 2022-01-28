@@ -42,6 +42,7 @@ export class ActionComponent implements OnInit {
     private apiSession: ApisessionService) { }
 
   ngOnInit() {
+    debugger
     this.hostDomain=APIUrl.Domain;
     this.getData();
   }

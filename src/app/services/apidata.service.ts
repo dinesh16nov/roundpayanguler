@@ -18,7 +18,8 @@ export class ApidataService {
   invokeMobileLoginFunction = new EventEmitter();
   invokeHeaderBalanceFunction = new EventEmitter();
   invokeMenuChangeFunction=new EventEmitter();
-  invokeMenuChangeFunction2=new EventEmitter();
+  invokeMenuChangeFunction2 = new EventEmitter();
+
 
   subsMenuChange:Subscription;
   subsLogin:Subscription;

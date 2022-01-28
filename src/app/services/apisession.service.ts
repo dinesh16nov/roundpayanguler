@@ -3,8 +3,8 @@ import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, of, from} from 'rxjs';
 import { APIUrl,HeaderInfo } from '../enums/emums';
-import { FetchBillReq,TransactionReq, RechargeReportReq, LedgerReportReq, RefundRequestReq,PGWebRequestModel, PGStatusCheckRequestModel, CommonWeRequest, WebWTWUserInfo } from '../enums/apiRequest';
-import {  BalanceResp,CommonResp,CouponDetail,NumberListResp,PGInitiatePGResponse, TransectionResp, WebAppUserProfileResp, WebMemberTypeModel} from '../enums/apiResponse';
+import { FetchBillReq,TransactionReq, RechargeReportReq, LedgerReportReq, RefundRequestReq,PGWebRequestModel, PGStatusCheckRequestModel, CommonWeRequest, WebWTWUserInfo, UpdateProfilereq } from '../enums/apiRequest';
+import {  AdvertisementPackageList, AdvertisementReq, BalanceResp,CommonResp,CouponDetail,NumberListResp,PGInitiatePGResponse, TransectionResp, WebAppUserProfileResp, WebMemberTypeModel} from '../enums/apiResponse';
 import { AuthService } from './auth.service'
 
 @Injectable({
@@ -144,5 +144,35 @@ export class ApisessionService {
       catchError(this.handleError<CommonResp>('WalletToWalleTransfer'))
       );
   }
+
+  UpdateProfile(req: UpdateProfilereq): Observable<WebAppUserProfileResp> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<WebAppUserProfileResp>(APIUrl.BaseURL + APIUrl.UpdateProfile,req, httpOptions).pipe(
+      catchError(this.handleError<WebAppUserProfileResp>('UpdateProfile'))
+    );
+  }
+
+  UploadAdvertisement(req: FormData): Observable<CommonResp> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<CommonResp>(APIUrl.BaseURL + APIUrl.UploadAdvertisement, req, httpOptions).pipe(
+      catchError(this.handleError<CommonResp>('UploadAdvertisement'))
+    );
+  }
+
+  GetAdvertisementPackage(): Observable<AdvertisementPackageList> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<AdvertisementPackageList>(APIUrl.BaseURL + APIUrl.GetAdvertisementPackage,1, httpOptions).pipe(
+      catchError(this.handleError<AdvertisementPackageList>('GetAdvertisementPackage'))
+    );
+  }
+
+  GetAdvertisementList(): Observable<AdvertisementReq[]> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<AdvertisementReq[]>(APIUrl.BaseURL + APIUrl.GetAdvertisementList, 1, httpOptions).pipe(
+      catchError(this.handleError<AdvertisementReq[]>('GetAdvertisementList'))
+    );
+  }
+
+  
 
 }

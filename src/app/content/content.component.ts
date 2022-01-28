@@ -19,6 +19,7 @@ export class ContentComponent implements OnInit {
     private apiServices:ApiService) { }
 
   ngOnInit() {
+    debugger;
     
     this.apiData.LoaderToggle();
     var isLocal=localStorage.getItem(SessionVar.BaseData);

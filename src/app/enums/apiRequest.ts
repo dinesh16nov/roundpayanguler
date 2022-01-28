@@ -146,3 +146,22 @@ export interface WTWMobile {
   
   MobileNo: number
 }
+
+export interface WebAppUserProfileUpdateReq {
+  name: string;
+  outletName: string;
+  
+  alternateMobile: string;
+  dob: string;
+  pan: string;
+  pincode: string;
+  
+  address: string;
+  aadhar: string;
+  profilePic: string
+}
+
+export interface UpdateProfilereq {
+
+  editUser: WebAppUserProfileUpdateReq
+}

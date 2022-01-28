@@ -69,7 +69,7 @@ export class MenusComponent implements OnInit {
   
   displayMenu()
   {
-    
+    debugger;
       if(this.menus.assignedOpTypes.length>9)
       {
         var rem=this.menus.assignedOpTypes.length-9;
@@ -137,7 +137,10 @@ export class MenusComponent implements OnInit {
           break; 
         case OpTypes.BARAssociationFee:
           routename="barAssociationFee.html"
-          break;    
+        break;
+       case OpTypes.Advertisement:
+        routename = "AdvertisementComponent.html"
+        break;
       default:
         break;
     }

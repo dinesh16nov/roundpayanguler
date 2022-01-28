@@ -66,6 +66,10 @@ import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociati
 import { TimerComponent } from './content/timer/timer.component';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.component';
+import { AdvertisementComponent } from './content/advertisement/advertisement.component';
+import { AdvertisementFooterComponent } from './advertisement-footer/advertisement-footer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -120,7 +124,9 @@ import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.com
     DesktopheaderComponent,
     MembershipUpdateComponent,
     TimerComponent,
-    WalletToWalletComponent
+    WalletToWalletComponent,
+    AdvertisementComponent,
+    AdvertisementFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +146,8 @@ import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.com
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    NgbModule
     ],
   providers: [CookieService,{provide:LocationStrategy,useClass:HashLocationStrategy},Title],
   bootstrap: [AppComponent]

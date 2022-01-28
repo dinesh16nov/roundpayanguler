@@ -359,6 +359,7 @@ export class MobileComponent implements OnInit,  PipeTransform {
   }
 
   proceedToAction() {
+    debugger
   
     this.IsRechargeSubmitted = true;
 

@@ -42,6 +42,7 @@ import { EducationFessComponent } from './content/pagecontainer/educationFess/ed
 import { ClubsAndAssociationComponent } from './content/pagecontainer/clubsAndAssociation/clubsAndAssociation.component';
 import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociationFee/barAssociationFee.component';
 import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.component';
+import { AdvertisementComponent } from './content/advertisement/advertisement.component';
 const routes: Routes = [
   { path: '', redirectTo: '/prepaid.html', pathMatch: 'full' },
   { path: 'user', component:ReportsComponent,
@@ -51,7 +52,8 @@ const routes: Routes = [
       {path:'transaction.html',component:TransactionComponent, canActivate:[AuthGuard]},
       {path:'profile.html',component:ProfileComponent, canActivate:[AuthGuard]},
       { path: 'membershipUpdate.html', component: MembershipUpdateComponent, canActivate: [AuthGuard]},
-      { path: 'wallettowalletComponent.html', component: WalletToWalletComponent, canActivate: [AuthGuard]}
+      { path: 'wallettowalletComponent.html', component: WalletToWalletComponent, canActivate: [AuthGuard] },
+      { path: 'AdvertisementComponent.html', component: AdvertisementComponent, canActivate: [AuthGuard] }
     ]
   },
   { 
@@ -89,7 +91,7 @@ const routes: Routes = [
       { path:'help.html', component:HelpComponent},
       { path:'termsconditions.html', component:TermsconditionsComponent},
       {path:'privacypolicy.html',component:PrivacypolicyComponent},
-      {path:'refundAndCancellation.html',component:RefundAndCancellationComponent}
+      { path: 'refundAndCancellation.html', component: RefundAndCancellationComponent }
     ] 
   },
   { path:'rnd',component:RndComponent},

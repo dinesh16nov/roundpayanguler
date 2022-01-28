@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable, of, from} from 'rxjs';
 import { APIUrl,HeaderInfo } from '../enums/emums';
 import { LoginReq,SignUpReq,SimplePlanReq, ROfferReq, VarifyOTPReq, UserSubscriptionReq } from '../enums/apiRequest';
-import { OpTypeResp, LoginResp,NumberListResp, CompanyProfileDetail} from '../enums/apiResponse';
+import { OpTypeResp, LoginResp,NumberListResp, CompanyProfileDetail, AdvertisementReq} from '../enums/apiResponse';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'appID':HeaderInfo.AppID,'version':HeaderInfo.Version,'domain':HeaderInfo.Domain })
 };
@@ -133,6 +133,14 @@ export class ApiService {
   {
     return this.http.post<any>(APIUrl.BaseURL + APIUrl.ForgetPassword,req, httpOptions).pipe(
       catchError(this.handleError<any>('ForgetPassword'))
+    );
+  }
+
+
+  GetAdvertisementFooter(): Observable<AdvertisementReq[]> {
+   
+    return this.http.post<AdvertisementReq[]>(APIUrl.BaseURL + APIUrl.GetAdvertisementListFooter, 1, httpOptions).pipe(
+      catchError(this.handleError<AdvertisementReq[]>('GetAdvertisementListFooter'))
     );
   }
 }

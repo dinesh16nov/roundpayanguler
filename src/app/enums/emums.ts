@@ -64,11 +64,16 @@ export enum APIUrl {
   ForgetPassword = "ForgetPassword",
   GetPaymentMode = 'GetPaymentMode',
   GetUserInfo = 'GetUserInfo',
-  WalletToWalleTransfer ='WalletToWalletTransfer',
+  WalletToWalleTransfer = 'WalletToWalletTransfer',
+  UpdateProfile = 'UpdateProfile',
+  UploadAdvertisement = 'UploadAdvertisement',
+  GetAdvertisementPackage = 'GetAdvertisementPackage',
+  GetAdvertisementList = 'GetAdvertisementList',
+  GetAdvertisementListFooter ='GetAdvertisementListFooter',
   DomainName = 'Prechargepay',
-  // Domain='http://localhost:44338/',
+   Domain='http://localhost:54343/',
   // Domain='https://admin.prechargepay.in/',
-  Domain = 'https://roundpay.net/',
+  //Domain = 'https://roundpay.net/',
   // BaseURL='https://admin.prechargepay.in/WebApp/'
   BaseURL = 'http://localhost:54343/WebApp/'
 
@@ -100,7 +105,8 @@ export enum OpTypes {
   CableTV = 39,
   Insurance = 27,
   AddMoney = 37,
-  UPI = 50
+  UPI = 50,
+  Advertisement=83
 }
 export enum ThemeType {
   Old = 1,

@@ -1,0 +1,154 @@
+
+<style>
+  .cus-btn {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    border: 1px solid #ced4da;
+    background: #e9ecef;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+</style>
+<div class="container-box">
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <div class="header">
+        Advertisement Upload
+      </div>
+      <div class="content">
+
+
+        <div class="scroll-content" id="dvUserInfo">
+
+          <div class="form-group">
+            <label class="lbl" for="txtCustNo">Package</label>
+            <div class="input-group">
+              <select [(ngModel)]="PackageId" (ngModelChange)="PackageInfo($event)" class="form-control">
+                <option  value=0>Select Pacakge </option>
+                <option *ngFor="let x of Package" value="{{x.id}}">{{x.packageName}}</option>
+              </select>
+
+
+            </div>
+            <span *ngIf="PackageId>0 " class="text-info text-cap">PackageCost:{{PackageCost}}</span><span *ngIf="PackageId>0" class="text-small text-info"> [ PackageVildity:{{PackageVal}} ] </span>
+
+            <span *ngIf="PackageId==0 && show==1" class="text-danger">Please Select Package.</span>
+          </div>
+          <div class="form-group">
+            <label class="lbl" for="txtCustNo">Type</label>
+            <div class="input-group">
+              <select [(ngModel)]="Type" class="form-control">
+                <option value='Web'>Web</option>
+                <option value='App'>App</option>
+              </select>
+              <button type="button" class="cus-btn" (click)="openQuickVIewPopup(Addpopup)">Preview</button>
+
+
+            </div>
+            <!--<span class="text-info text-cap" *ngIf="Userdatadata==1">{{OutletName}}</span><span *ngIf="Userdatadata==1" class="text-small text-info"> [ {{UserID}} ] </span>
+
+            <span *ngIf="Userdatadata==2 " class="text-danger">{{Msg}}</span>-->
+          </div>
+        </div>
+
+        <div class="scroll-content">
+
+          <div class="form-group">
+
+
+            <div class="custom-file">
+              <label class="custom-file-label" for="file">{{file_name}}</label>
+              <input class="custom-file-input" type="file" id="file" (change)="handleFileInput($event.target.files)">
+            </div>
+
+            <span *ngIf="fileToUpload== undefined && show==1" class="text-danger">Please Select file</span>
+
+          </div>
+          <div class="form-group">
+            <label class="lbl" for="txtRemark">Return Url</label>
+            <textarea aria-describedby="remarkHelp" [(ngModel)]="ReturnUrl" maxlength="200" class="form-control" id="txtRemark" placeholder="Enter Url" tabindex="3"></textarea>
+
+            <span *ngIf="ReturnUrl.length==0 && show==1" class="text-danger">Please Fill Return Url .</span>
+          </div>
+
+
+          <div class="form-group">
+            <label class="lbl" for="txtRemark">Content</label>
+            <textarea aria-describedby="remarkHelp" [(ngModel)]="Content" maxlength="300" class="form-control" id="txtRemark" placeholder="Enter Content" tabindex="3"></textarea>
+            <span *ngIf="Content.length==0 && show==1" class="text-danger">Please Fill Content.</span>
+          </div>
+
+
+
+        </div>
+        
+        <div class="scroll-content text-center">
+          <!--<p  class="text-danger">{{Msg}}</p>-->
+          <p  class="text-info">{{Msg}}</p>
+
+          <button type="button" (click)="CreateFormdate()" class="btn" tabindex="7">Submit</button>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 mb-3">
+      <div class="header">
+        Advertisement Upload
+      </div>
+      <div class="content">
+        <div class="table-responsive" style="height: 381px;">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Package Name</th>
+                <th scope="col" class="w-5" >Status</th>
+                <th scope="col" class="w-30">Validity</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="w-40">Content Text</th>
+                <th scope="col" class="w-10">Image</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let opt of AdvertisementList; let i = index">
+              <tr>
+                <td scope="row">{{i+1}}</td>
+                <td>{{opt.packageName}}</td>
+                <td>{{opt.status==1?'Pending':opt.status==2?'Approve':'Rejected'}} <small *ngIf="opt.status==2" class="font-weight-bold text-monospace">[{{opt.currentStatus}}]</small></td>
+                <td *ngIf="opt.status==2"><p class="text-center">{{opt.startDate}}<br>To<br>{{opt.endDate}}</p></td>
+                <td *ngIf="opt.status!=2">N/A</td>
+
+                <td>{{opt.type}}</td>
+                <td><p>{{opt.contentText}}</p></td>
+                <td class="text-center">
+                  <a href="{{Domain}}/Image/Advertisement/{{opt.contentImage}}.png" target="_blank" class="d-flex"><img src='{{Domain}}/Image/Advertisement/{{opt.contentImage}}.png' style="width:100%;"></a>
+                <a *ngIf="opt.returnUrl !=''" class="btn btn-sm w-100 mt-2 cus-btn" title="Return Url" href="{{opt.returnUrl}}"target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<ng-template #Addpopup>
+  <div class="modal-header ">
+    <h4 class="modal-title pull-left title"><i class="fa fa-plus" aria-hidden="true"></i>Advertisement Preview</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="preview.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<img   src='./assets/img/addWebApp.jpg'style="width: 100%; display: block; margin: auto;">
+
+
+</ng-template>
+

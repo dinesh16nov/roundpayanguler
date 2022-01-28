@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/apiservices.service';
 import { ApidataService } from 'src/app/services/apidata.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApisessionService } from 'src/app/services/apisession.service';
-import { RespCode,APIUrl } from 'src/app/enums/emums';
+import { RespCode,APIUrl, SessionVar, OpTypes } from 'src/app/enums/emums';
 
 @Component({
   selector: 'aditya-desktopheader',
@@ -27,7 +27,10 @@ Domain='';
   SignUpForm:FormGroup;
   SignUpResp:any;
   IsSignUpSubmitted=false;
-  gettingBalanceSpinClass="fa fa-refresh";
+  gettingBalanceSpinClass = "fa fa-refresh";
+  isWalletToWallet = false;
+  IsAdvertisement = false;
+
   @Input() LoginDetail:any
   @ViewChild('modelSignIn') modelSignIn: TemplateRef<any>;
   constructor(private modalService: BsModalService, 
@@ -38,6 +41,7 @@ Domain='';
     private fb:FormBuilder) { }
 
   ngOnInit() {
+    console.log();
     this.Domain=APIUrl.Domain;
     this.login();
     
@@ -59,6 +63,8 @@ Domain='';
         this.getWalletbalance();
       });    
     }
+
+    this.IsAdvertisement = JSON.parse(localStorage.getItem(SessionVar.OperatorList)).assignedOpTypes.filter(x => x.serviceID == OpTypes.Advertisement).length>0;
   }
   gotoLogin()
   {
@@ -105,7 +111,8 @@ Domain='';
     this.gettingBalanceSpinClass="fa fa-refresh fa-spin"; 
     var BalanceResp:BalanceResp;
     this.apiSession.GetBalance().subscribe(resp=>{
-      BalanceResp=resp;
+      BalanceResp = resp;
+      this.isWalletToWallet = resp.isWalletToWallet;
       if(BalanceResp!=undefined){
         if(BalanceResp.statuscode==RespCode.Success)
         {

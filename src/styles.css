@@ -396,3 +396,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field-appearance-legacy .mat-form-field-label {
   color: #000 !important;
 }
+.slick-prev:before, .slick-next:before {
+  font-size: 30px !important;
+  color: #424242 !important;
+}
+
+.slick-prev, .slick-next {
+  z-index: 99999 !important;
+}
+.slick-prev {
+  left: 0px!important;
+}
+.slick-next {
+  right: 0px!important;
+}

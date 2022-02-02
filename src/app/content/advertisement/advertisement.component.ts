@@ -93,7 +93,7 @@ export class AdvertisementComponent implements OnInit {
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     this.file_name = this.fileToUpload.name;
-    console.log(this.fileToUpload)
+   
     }
 
   GetPacakge() {

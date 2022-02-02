@@ -11,12 +11,12 @@ import { ApisessionService } from '../services/apisession.service';
 })
 export class AdvertisementFooterComponent implements OnInit {
   Domain: string = APIUrl.Domain;
-  AdvertisementList: any;
+  AdvertisementList: any[];
   //----------------------------
   //itemsPerSlide = 3;
   //singleSlideOffset = true;
  /// noWrap = false;
- // IsTrue = false;
+  IsTrue = false;
 //-----------------------------
   
 
@@ -31,9 +31,8 @@ export class AdvertisementFooterComponent implements OnInit {
   GetAdvertisementList() {
     this.apiservice.GetAdvertisementFooter().subscribe(resp => {
       this.AdvertisementList = resp;
-      //this.IsTrue = true;
-      //this.images = this.AdvertisementList;
-      console.log(this.AdvertisementList);
+      if (this.AdvertisementList.length>0)
+      this.IsTrue = true;
   
     });
     

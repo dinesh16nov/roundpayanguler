@@ -5,26 +5,6 @@
       <div class="content">
 
         <div>
-
-          <!--<carousel [isAnimated]="true"
-            [itemsPerSlide]="itemsPerSlide"
-            [singleSlideOffset]="singleSlideOffset"
-            [noWrap]="noWrap"
-            [interval]="3000"
-            [startFromIndex]="0"
-            [showIndicators]="false">
-    <slide *ngFor="let slide of AdvertisementList; let index=index" class="animated">
-      <div class="slide-item">
-        <a href="{{Domain}}/Image/Advertisement/{{slide.returnUrl}}.png" target="_blank" class="d-flex">
-          <img src="{{Domain}}/Image/Advertisement/{{slide.contentImage}}.png" alt="image slide">
-        </a>
-
-        <h4 class="mt-2"> {{slide.contentText}}</h4>
-      </div>
-
-    </slide>
-  </carousel>-->
-
           <ngx-slick-carousel class="carousel"
                               #slickModal="slick-carousel"
                               [config]="slideConfig"

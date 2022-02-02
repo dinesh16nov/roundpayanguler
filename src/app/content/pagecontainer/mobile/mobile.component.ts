@@ -509,7 +509,7 @@ export class MobileComponent implements OnInit,  PipeTransform {
   }
 
   Circlechangednew(event: any): void {
-    this.circle = parseInt(event.option.value.oid);
+    this.circle = parseInt(event.option.value.id);
     if (this.operator > 0)
       this.browseSimplePlan()
   }

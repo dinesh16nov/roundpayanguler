@@ -125,6 +125,7 @@ export class MobileComponent implements OnInit,  PipeTransform {
 
   get r() { return this.RechargeForm.controls }
   checkOperator() {
+
     var req = { mobile: "", userID: "" }
     if (this.mobile) {
       if (this.mobile.toString().length == 4) {
@@ -488,7 +489,6 @@ export class MobileComponent implements OnInit,  PipeTransform {
   }
 
   Operatorchangednew(event: any): void {
-    debugger
     this.operator = parseInt(event.option.value.id);
     this.odata = this.apiData.getOperatorData(this.operator);
     if (this.odata.isAccountNumeric)
@@ -514,7 +514,7 @@ export class MobileComponent implements OnInit,  PipeTransform {
       this.browseSimplePlan()
   }
   inputclear(a = 0) {
-    debugger
+   
     if (a == 0) {
       this.operator = 0;
       this.RechargeForm.controls['myControl'].setValue(' ');

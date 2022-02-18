@@ -49,7 +49,7 @@ export class ActionComponent implements OnInit {
 
   getData()
   {
-    debugger;
+   
     if(!this.apiData.getSessionData(SessionVar.TransactionRequest))
     {
       this.apiData.gotoMenu('prepaid.html')

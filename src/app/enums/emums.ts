@@ -70,7 +70,8 @@ export enum APIUrl {
   UploadAdvertisement = 'UploadAdvertisement',
   GetAdvertisementPackage = 'GetAdvertisementPackage',
   GetAdvertisementList = 'GetAdvertisementList',
-  GetAdvertisementListFooter ='GetAdvertisementListFooter',
+  GetAdvertisementListFooter = 'GetAdvertisementListFooter',
+  PostUpiPayment ='DoUPIPaymentB2C',
   DomainName = 'RoundPay',
    Domain='http://localhost:54343/',
   // Domain='https://admin.prechargepay.in/',
@@ -107,7 +108,8 @@ export enum OpTypes {
   Insurance = 27,
   AddMoney = 37,
   UPI = 50,
-  Advertisement=83
+  Advertisement = 83,
+  UpiPayment = 62
 }
 export enum ThemeType {
   Old = 1,

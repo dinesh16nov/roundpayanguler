@@ -173,6 +173,12 @@ export class ApisessionService {
     );
   }
 
-  
+  PostUpiPayment(req: any): Observable<any> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<any>(APIUrl.BaseURL + APIUrl.PostUpiPayment, req, httpOptions).pipe(
+      catchError(this.handleError<any>('PostUpiPayment'))
+    );
+
+  }
 
 }

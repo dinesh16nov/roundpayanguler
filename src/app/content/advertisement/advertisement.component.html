@@ -29,8 +29,7 @@
                 <option  value=0>Select Pacakge </option>
                 <option *ngFor="let x of Package" value="{{x.id}}">{{x.packageName}}</option>
               </select>
-
-
+               
             </div>
             <span *ngIf="PackageId>0 " class="text-info text-cap">PackageCost:{{PackageCost}}</span><span *ngIf="PackageId>0" class="text-small text-info"> [ PackageVildity:{{PackageVal}} ] </span>
 

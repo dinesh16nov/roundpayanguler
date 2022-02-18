@@ -137,6 +137,9 @@ export class MenusComponent implements OnInit {
         case OpTypes.BARAssociationFee:
           routename="barAssociationFee.html"
         break;
+      case OpTypes.UpiPayment:
+        routename = "UpiPayment.html"
+        break;
       default:
         break;
     }

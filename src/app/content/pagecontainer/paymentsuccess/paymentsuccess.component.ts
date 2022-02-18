@@ -18,6 +18,8 @@ export class PaymentsuccessComponent implements OnInit {
       "Mobile":"",
       "Amount":""
   }
+  MobileRecharge: string = 'Mobile Recharge'
+  RechargeSuccessful: string = 'Recharge Successful';
   constructor(private apiData:ApidataService) { }
 
   ngOnInit() {
@@ -26,11 +28,12 @@ export class PaymentsuccessComponent implements OnInit {
 
   getData()
   {
-
+    debugger
     var req=this.apiData.getSessionData(SessionVar.TransactionRequest);
     var resp=this.apiData.getSessionData(SessionVar.TransactionResponse);
     if(req)
     {
+      
         this.data={
         Amount:req.amount,
         Date:moment(new Date()).format("DD MMM YYYY"),
@@ -39,6 +42,8 @@ export class PaymentsuccessComponent implements OnInit {
         Status:resp.statuscode==RespTranCode.Success?'Success':'Pending',
         TransactionID:resp.transactionID
       }
+      this.MobileRecharge = req.subject == undefined ? 'Mobile Recharge' : 'Upi Payment';
+      this.RechargeSuccessful = req.subject == undefined ? this.RechargeSuccessful : 'Upi Payment Successful';
     }
     else
     {

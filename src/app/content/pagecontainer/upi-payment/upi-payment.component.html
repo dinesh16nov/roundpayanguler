@@ -1,0 +1,53 @@
+
+<div class="container-box">
+  <div class="header">
+    UPIPayment
+  </div>
+  <div class="content">
+
+
+    <div class="scroll-content" id="dvUserInfo">
+
+      <div class="form-group">
+        <label class="lbl" for="txtCustNo">UPI ID</label>
+        <div class="input-group">
+          <input class="form-control" autofocus  [(ngModel)]="UpiAdress"  placeholder="Enter Upi ID or VPA." tabindex="1">
+        </div>
+        <span *ngIf="!Isres && UpiAdress.length <=0 " class="text-danger">UPI ID or VPA is mandatory field.</span>
+      </div>
+
+    </div>
+
+    <div class="scroll-content">
+      <div class="form-group">
+        <label class="lbl" for="txtRemark">Beneficiary Name</label>
+        <input aria-describedby="remarkHelp" [(ngModel)]="BeneficiaryName" class="form-control" placeholder="Enter Beneficiary Name" tabindex="3">
+      </div>
+      <span *ngIf="!Isres && BeneficiaryName.length <=0 " class="text-danger">Beneficiary Name is mandatory field.</span>
+      <div class="form-group">
+        <label class="lbl" for="txtAmount">Amount</label>
+        <div class="input-group">
+          <input class="form-control" id="txtAmount" [(ngModel)]="Amount" maxlength="10" placeholder="Enter Amount" tabindex="1" type="number">
+        </div>
+        <small id="amountHelp" class="form-text text-muted d-none"></small>
+        <span *ngIf="!Isres && Amount<1" class="text-danger">Amount is numeric mandatory field.</span>
+      </div>
+
+
+
+
+
+    </div>
+    <aditya-pageloader *ngIf="isloader"></aditya-pageloader>
+    <div class="scroll-content text-center">
+      <p *ngIf="statusCode==-1" class="text-danger">{{respMsg}}</p>
+      <p *ngIf="statusCode==1" class="text-info">{{respMsg}}</p>
+      <button type="button" (click)="proceedToPay()" class="btn" tabindex="7">{{BtnDisabled==true?'Payment':'Wait.....'}}</button>
+
+
+    </div>
+  </div>
+
+
+</div>
+

@@ -143,4 +143,7 @@ export class ApiService {
       catchError(this.handleError<AdvertisementReq[]>('GetAdvertisementListFooter'))
     );
   }
+
+
+  
 }

@@ -69,6 +69,7 @@ import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.com
 import { AdvertisementComponent } from './content/advertisement/advertisement.component';
 import { AdvertisementFooterComponent } from './advertisement-footer/advertisement-footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UpiPaymentComponent } from './content/pagecontainer/upi-payment/upi-payment.component';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TimerComponent,
     WalletToWalletComponent,
     AdvertisementComponent,
-    AdvertisementFooterComponent
+    AdvertisementFooterComponent,
+    UpiPaymentComponent
   ],
   imports: [
     BrowserModule,

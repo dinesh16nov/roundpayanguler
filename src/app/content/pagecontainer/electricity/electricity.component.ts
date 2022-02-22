@@ -245,7 +245,9 @@ export class ElectricityComponent implements OnInit {
 
   Operatorchangednew(event: any): void {
 
+
     this.operator = parseInt(event.option.value.id);
+   )
     if (this.operator == 0) {
       this.MobileplaceHolder = 'Select Electricity Operator';
       return;

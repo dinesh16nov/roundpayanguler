@@ -144,6 +144,10 @@ export class ApiService {
     );
   }
 
-
+  GetOpDetail(req:any): Observable<any> {
+    return this.http.post<any>(APIUrl.BaseURL + APIUrl.B2COpDetail,req, httpOptions).pipe(
+      catchError(this.handleError<AdvertisementReq[]>('B2COpDetail'))
+    );
+  }
   
 }

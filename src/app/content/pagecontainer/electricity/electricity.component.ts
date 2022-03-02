@@ -5,13 +5,14 @@ import { ApidataService } from 'src/app/services/apidata.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { TransactionReq } from 'src/app/enums/apiRequest';
+import { FetchBillReq, TransactionReq } from 'src/app/enums/apiRequest';
 import { OpTypes, SessionVar } from 'src/app/enums/emums';
 import { ApiService } from 'src/app/services/apiservices.service';
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { ApisessionService } from '../../../services/apisession.service';
 
 @Component({
   selector: 'aditya-electricity',
@@ -25,27 +26,52 @@ export class ElectricityComponent implements OnInit {
 
   RechargeForm:FormGroup;
   mobile:any;
-  amount:number;
+  amount: number;
+  oldfetchdata: any;
   MobileplaceHolder='Select Electricity Operator'
   AccountRemark=''
-  odata:any;
+  odata: any;
+  txtCust: string;
   public operator=0;
   public OperatorData: Array<Select2OptionData>;
   public filteredOperator: Observable<Array<Select2OptionData>>;
   public OperatorOptions: Select2Options;
   IsRechargeSubmitted=false;
-  // slides = [
-  //   {img: "../../../../assets/img/cus-img/electricitybill.jpg"}
-    
-    
-    
-  // ];
+  Optional = new Array('', '', '', '');
+  ddlOptional1:any=''
+_Model =[];
+ _Model2 = [];
+  _Model3 = [];
+  IsByModel2: boolean = false;
+  IsModel3 = false;
   slides = [];
   spnMobile='';
-  spnAmount='';
-  slideConfig = {"slidesToShow": 1, "slidesToScroll": 1, autoplay:true, autoplaySpeed:2000, arrows:true};
+  spnAmount = '';
+  IsexactNessID=false
+  
+  slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, autoplay: true, autoplaySpeed: 2000, arrows: true };
+  fetchbilldiv = {
+"BillerID":'',
+"Name":'',
+"DueDate":'',
+"BillNumber":'',
+"BillDate":'',
+"BillPeriod":'',
+"BillMonth":''
+  }
+  req: FetchBillReq = {o1:'',o2:'',o3:'',o4:''} as FetchBillReq;
+  isquickpay: boolean = false;
+  isbbps: boolean;
+  _OpDetail: OpdetailEle = { accountName:'Mobile Number'} as OpdetailEle;
+  btnPay: boolean=true;
+  txtAmount: boolean;
+  btnFetchBill: boolean ;
+  divCust: boolean=true;
+ 
+    BillDetail: boolean=false;
+
   constructor(private apiData:ApidataService,private router:Router,private authService:AuthService,
-    private fb: FormBuilder, private apiService: ApiService, private FormValidation: FormValidationService, protected _sanitizer: DomSanitizer) { }
+    private fb: FormBuilder, private apiService: ApiService, private FormValidation: FormValidationService, protected _sanitizer: DomSanitizer, protected _apisessionService: ApisessionService) { }
 
   ngOnInit() {
     this.OperatorOptions= {
@@ -141,8 +167,8 @@ export class ElectricityComponent implements OnInit {
   
 
   proceedToAction()
-  { 
-    
+  {
+    debugger;
     this.IsRechargeSubmitted=true;
     console.log(this.RechargeForm);
     if(this.FormValidation.CheckFormValidStatus(this.RechargeForm))
@@ -179,12 +205,14 @@ export class ElectricityComponent implements OnInit {
       }
       if(this.odata && this.mobile)
       {
+
+
         if(this.odata.length>this.mobile.toString().length)
         {
           this.spnMobile=this.odata.accountRemak;
         }
       }  
-    return;
+    
     }
     if(!this.mobile)
     {
@@ -202,19 +230,20 @@ export class ElectricityComponent implements OnInit {
     {
       return;
     }
-    
+    this.setOption();
     var transactionReq:TransactionReq={
       accountNo:this.mobile,
       amount:this.amount,
-      customerNo:'',
-      geoCode:'',
-      o1:'',
-      o2:'',
-      o3:'',
-      o4:'',
+      customerNo:this.txtCust,
+      geoCode: '',
+      o1: this.req.o1,
+      o2: this.req.o1,
+      o3: this.req.o1,
+      o4: this.req.o1,
       oid:this.operator,
       refID:''
     }
+    
     this.apiData.setSessionData(SessionVar.TransactionRequest,transactionReq);
     if(this.authService.IsAuth())
     {
@@ -247,7 +276,7 @@ export class ElectricityComponent implements OnInit {
 
 
     this.operator = parseInt(event.option.value.id);
-   )
+   
     if (this.operator == 0) {
       this.MobileplaceHolder = 'Select Electricity Operator';
       return;
@@ -263,9 +292,10 @@ export class ElectricityComponent implements OnInit {
       this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax)]);
     this.RechargeForm.controls['amount'].setValidators([Validators.min(this.odata.min), Validators.max(this.odata.max), Validators.pattern('^[0-9]+(\.?[0-9]?)')]);
     this.IsRechargeSubmitted = false;
+    this.OpDetail();
   }
   transform(value: string, type?: string): SafeHtml | SafeUrl | SafeResourceUrl {
-    console.log(value);
+   
     return this._sanitizer.bypassSecurityTrustUrl(value);
 
   }
@@ -277,4 +307,107 @@ export class ElectricityComponent implements OnInit {
     }
     
   }
+
+
+  OpDetail() {
+
+    this.apiService.GetOpDetail({ OID: this.operator }).subscribe(resp => {
+      console.log(resp);
+      this._OpDetail=resp.operatorDetail
+      this._Model = resp.operatorOptional.operatorOptionals;
+      this._Model2 = resp.operatorOptional.operatorParams;
+      this._Model3 = resp.operatorOptional.opOptionalDic;
+      if (this._Model2 != null) {
+        this.IsByModel2 = this._Model2.length > 0;
+      }
+      if (this._Model3 != null) {
+        this.IsModel3 = this._Model3.length > 0;
+      }
+      this.showhide();
+    })
+   
+  }
+
+  showhide()
+  {
+    this.isquickpay = (this._OpDetail.isBBPS === true && this._OpDetail.isBilling === false);
+    this.isbbps = this._OpDetail.isBBPS === true;
+    if (this.isbbps) {
+      this.btnPay = true;
+      this.txtAmount = true;
+      if (this._OpDetail.isBilling) {
+        this.btnPay = false;
+        this.btnFetchBill = true;
+        if (!this._OpDetail.isPartial) {
+          this.txtAmount = false;
+        }
+      }
+    }
+  }
+
+
+
+  filterArrey(para: number) {
+   return this._Model3.filter(w => w.optionalID == para);
+  }
+  FetchBill() {
+    this.setOption();
+    if (this.authService.IsAuth()|| true)
+    {
+      this._apisessionService.FetchBill(this.req).subscribe(resp => {
+        if (resp.statuscode == 1) {
+          this.BillDetail = true;
+          this.txtAmount = true
+          this.fetchbilldiv.Name = resp.bBPSResponse.customerName
+          this.fetchbilldiv.BillDate = resp.bBPSResponse.billDate
+          this.fetchbilldiv.BillPeriod = resp.bBPSResponse.billPeriod
+          this.fetchbilldiv.DueDate = resp.bBPSResponse.dueDate
+          this.fetchbilldiv.BillDate = resp.bBPSResponse.billDate
+          this.fetchbilldiv.BillNumber = resp.bBPSResponse.billNumber
+          this.amount = resp.bBPSResponse.amount;
+          this.oldfetchdata = resp.bBPSResponse;
+          this.IsexactNessID = resp.bBPSResponse.exactness == 1;
+          this.btnFetchBill = false;
+          this.btnPay=true
+        }
+
+      })
+     
+    }
+    else {
+      this.apiData.loadOtherClass();
+      this.router.navigate(['login.html'], { queryParams: { reff: '3309a24d426f5ee0d77b91f885ee641b', pid: '538536ff5636f4dc4e894b16182a3165b8413ac0cbabf91126fe2b8be4795f86d3a59a416a6b7b8920d00b0af0109b50' } });
+    }
+
+    //this._apisessionService.FetchBill(this.req).subscribe(resp => {
+    //  console.log(this.req);
+
+
+    //})
+
+    
+
+  }
+  ddlchange(a, b) {
+    this.req.o1 = b == 1 ? a.value : this.req.o1;
+    this.req.o2 = b == 2 ? a.value : this.req.o2;
+    this.req.o3 = b == 3 ? a.value : this.req.o3;
+    this.req.o4 = b == 4 ? a.value : this.req.o4;
+  }
+  setOption() {
+    this.req.oid = this.operator;
+    this.req.amount = this.amount;
+    this.req.accountNo = this.mobile;
+    this.req.CustomerNo = this.txtCust;
+    var o1 = (<HTMLInputElement>document.getElementById("txtOption1"))
+    var o2 = (<HTMLInputElement>document.getElementById("txtOption2"))
+    var o3 = (<HTMLInputElement>document.getElementById("txtOption3"))
+    var o4 = (<HTMLInputElement>document.getElementById("txtOption4"))
+    this.req.o1 = o1 == null ? this.req.o1 : o1.value;
+    this.req.o2 = o2 == null ? this.req.o2 : o2.value;
+    this.req.o3 = o3 == null ? this.req.o3 : o3.value;
+    this.req.o4 = o4 == null ? this.req.o4 : o4.value;
+  }
+
+
 }

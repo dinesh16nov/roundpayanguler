@@ -1,142 +1,216 @@
 <div class="cus-container">
-    <div class="container-fluid">
-        <div class="row">
-           <div class="col-md-4">
-              <div class="form-outter-sec">
-                 <div class="container">
-                    <h3>Pay Your Electricity Bill</h3>
-                    <form [formGroup]="RechargeForm">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-outter-sec">
+          <div class="container">
+            <h3>Pay Your Electricity Bill</h3>
+            <form [formGroup]="RechargeForm">
 
-                        <div class="form-group row">
-                          
-                           <div class="col-md-12">
-                             <div class="form-group  cus-form-check-inline">
-                               <label>Operator</label>
-                               <!--<select2 [data]="OperatorData" class="form-control" [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>-->
-                               <mat-form-field class="example-full-width">
-                                 <input type="text" placeholder="" matInput formControlName="myControl" [matAutocomplete]="auto">
-                                 <a (click)="inputclear(0)" class="Browse-plan">  <i class="fa fa-times"></i> </a><!--[formControl]="myControl"-->
-                                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="Operatorchangednew($event)" [displayWith]="displayFn">
-                                   <mat-option  *ngFor="let option of filteredOperator | async" [value]="option">
-                                     <!--<img [src]="transform('{{option.additional.image}}')"/> {{option.text}}-->
-                                     <img [src]="transform(option.additional.image)" /> {{option.text}}
-                                   </mat-option>
-                                 </mat-autocomplete>
-                               </mat-form-field>
-                               <span class="errorMsg" *ngIf="operator==0 && IsRechargeSubmitted">Select Operator</span>
-                             </div>
-                           </div>
-                           <div class="col-md-12">
-                               <div class="form-group cus-form-check-inline">
-                                  <!-- <label>Mobile Number</label> -->
-                                  <input type="text"  [(ngModel)]="mobile" formControlName="mobile" [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}" class="form-control cus-form-control"  placeholder="{{MobileplaceHolder}}">
-                                  <span class="accountRemark">{{AccountRemark}}</span>
-                                  <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
-                                        <span class="errorMsg">{{spnMobile}}</span>
-                                       
-                                      </div>
-                               </div>
-                            </div>
-                           <div class="col-md-12">
-                              <div class="form-group cus-form-check-inline">
-                                  <input type="text" class="form-control cus-form-control" placeholder="Amount" [(ngModel)]="amount" formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}" >
-                                  <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
-                                    <span class="errorMsg">{{spnAmount}}</span>
-                                       
-                                    </div>
-                                 <!-- <a href="" class="Browse-plan">  Fetch Bill</a> -->
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Pay</button>
-                           </div>
-                        </div>
-                     </form>
-                 </div>
-              </div>
-           </div>
-           <div class="col-md-8">
-               <div class="form-outter-sec">
-                     <div class="slider">
-                      <ngx-slick-carousel class="carousel" 
-                      #slickModal="slick-carousel" 
-                      [config]="slideConfig" 
-                     
-                      >
-      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-            <img src="{{ slide.resourceUrl }}" alt="" width="100%">
-      </div>
-    </ngx-slick-carousel>
-    </div>
-                     <!-- <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                           <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
-                        </li>
-                     </ul>
-                     
-                     <div class="tab-content">
-                        <div class="tab-pane container active" id="home">
-                           <div class="outter-promo-sec">
-                              <ul>
-                                 <li>
-                                    <h4>RECHARGEFIRST125</h4>
-                                    <span class="promocode-detail">
-                                    <span><a href="#">View detail</a></span>
-                                    </span>
-                                    <p>
-                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
-                                    </p>
-                                 </li>
-                                 <li>
-                                    <h4>RECHARGEFIRST125</h4>
-                                    <span class="promocode-detail">
-                                    <span><a href="#">View detail</a></span>
-                                    </span>
-                                    <p>
-                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
-                                    </p>
-                                 </li>
-                                 <li>
-                                    <h4>RECHARGEFIRST125</h4>
-                                    <span class="promocode-detail">
-                                    <span><a href="#">View detail</a></span>
-                                    </span>
-                                    <p>
-                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
-                                    </p>
-                                 </li>
-                                 <li>
-                                    <h4>RECHARGEFIRST125</h4>
-                                    <span class="promocode-detail">
-                                    <span><a href="#">View detail</a></span>
-                                    </span>
-                                    <p>
-                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
-                                    </p>
-                                 </li>
-                                 <li>
-                                    <h4>RECHARGEFIRST125</h4>
-                                    <span class="promocode-detail">
-                                    <span><a href="#">View detail</a></span>
-                                    </span>
-                                    <p>
-                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
-                                    </p>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="tab-pane container fade" id="menu1">...</div>
-                        <div class="tab-pane container fade" id="menu2">...</div>
-                     </div> -->
+              <div class="form-group row">
+
+                <div class="col-md-12">
+                  <div class="form-group  cus-form-check-inline">
+                    <label>Operator</label>
+                    <!--<select2 [data]="OperatorData" class="form-control" [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>-->
+                    <mat-form-field class="example-full-width">
+                      <input type="text" placeholder="" matInput formControlName="myControl" [matAutocomplete]="auto">
+                      <a (click)="inputclear(0)" class="Browse-plan">  <i class="fa fa-times"></i> </a><!--[formControl]="myControl"-->
+                      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="Operatorchangednew($event)" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOperator | async" [value]="option">
+                          <!--<img [src]="transform('{{option.additional.image}}')"/> {{option.text}}-->
+                          <img [src]="transform(option.additional.image)" /> {{option.text}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <span class="errorMsg" *ngIf="operator==0 && IsRechargeSubmitted">Select Operator</span>
                   </div>
-           </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group cus-form-check-inline">
+                    <!-- <label>Mobile Number</label> -->
+                    <input type="text"
+                           maxlength="{{_OpDetail.lengthMax}}"
+                           [(ngModel)]="mobile"
+                           formControlName="mobile"
+                           [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}"
+                           class="form-control cus-form-control"
+                           placeholder="{{_OpDetail.accountName}}">
+                    <span class="accountRemark">{{AccountRemark}}</span>
+                    <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
+                      <span class="errorMsg">{{spnMobile}}</span>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div>
+
+
+                </div>
+                <div *ngIf="IsByModel2; else elseblock2">
+
+                  <div *ngFor="let item of _Model2;let i = index">
+                    <div class="form-group">
+
+
+                      <div *ngIf="item.isDropDown && IsModel3; else elseblock">
+
+                        <div *ngIf="filterArrey(item.id).length>0; else elseblock1">
+
+
+                          <mat-form-field appearance="fill">
+                            <mat-label>City</mat-label>
+                            <mat-select name="food" (selectionChange)="ddlchange($event,i)">
+                              <mat-option *ngFor="let food of filterArrey(item.id)" [value]="food.value">
+                                {{food.value}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+
+                        </div>
+                        <ng-template #elseblock1>
+
+                          <div class="form-group">
+                            <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" placeholder="Enter {{item.displayName}}">
+                          </div>
+                          <!--<input type="Text" id='txtOption{{i+1}}' name="name" placeholder="Enter {{item.ParamName}}" value="" />-->
+
+                        </ng-template>
+
+
+
+
+                      </div>
+                      <ng-template #elseblock>
+
+                        <!--<mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{item.paramName}}</mat-label>
+            <input id='txtOption{{i+1}}' placeholder="Enter {{item.paramName}}">
+          </mat-form-field>-->
+                        <!--<input type="Text" id='txtOption{{i+1}}' name="name" placeholder="Enter {{item.ParamName}}" value="" />-->
+                        <div class="form-group">
+                          <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" placeholder="Enter {{item.paramName}}">
+                        </div>
+                      </ng-template>
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <ng-template #elseblock2>
+                  <div *ngFor="let item of _Model;let i = index">
+
+                    <label id='lblOption{{i+1}}'>{{item.displayName}}</label>
+                    <input type="Text" id='txtOption{{i+1}}' name="name" placeholder="Enter {{item.displayName}}" value="" />
+                    <div class="form-group">
+                      <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" placeholder="Enter {{item.displayName}}">
+                    </div>
+                  </div>
+
+
+                </ng-template>
+                <div *ngIf="divCust" class="col-md-12">
+                  <div class="form-group cus-form-check-inline">
+                    <input type="text" [(ngModel)]="txtCust" formControlName="mobile" class="form-control cus-form-control" placeholder="Customer Mobile Number">
+                  </div>
+                </div>
+
+                <div *ngIf="txtAmount" class="col-md-12">
+                  <div class="form-group cus-form-check-inline">
+                    <input type="text" class="form-control cus-form-control" [readonly]='IsexactNessID'  placeholder="Amount" [(ngModel)]="amount" formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}">
+                    <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
+                      <span class="errorMsg">{{spnAmount}}</span>
+
+                    </div>
+                    <!-- <a href="" class="Browse-plan">  Fetch Bill</a> -->
+                  </div>
+                </div>
+                <div *ngIf="BillDetail" class="card" id="billfetchdiv">
+                  <div class="PDAx">
+                    <div class="_1sdE">
+                      <a>Consumer Details<i class="icon-ArrowRight _3pMZ"></i></a>
+                    </div>
+                    <div class="_213c" style="font-size: larger;">
+                      <div class="container" id="dv_BillerID">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Biller ID</div>
+                          <span class="col-md-8">{{fetchbilldiv.BillerID}}</span>
+                        </div>
+                      </div>
+                      <div class="container" id="dv_CName">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Name</div>
+                          <span class="col-md-8">{{fetchbilldiv.Name}}</span>
+                        </div>
+                      </div>
+                      <div class="container" id="dv_DueDate">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Due Date</div>
+                          <span class="col-md-8">{{fetchbilldiv.DueDate}}</span>
+                        </div>
+                      </div>
+                      <div class="container" id="dv_BillNo">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Bill Number</div>
+                          <span class="col-md-8">{{fetchbilldiv.BillNumber}}</span>
+                        </div>
+                      </div>
+                      <div class="container" id="dv_BillDate">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Bill Date</div>
+                          <span class="col-md-8">{{fetchbilldiv.BillDate}}</span>
+                        </div>
+                      </div>
+                      <div class="container" id="dv_BillPeriod">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Bill Period</div>
+                          <span class="col-md-8">{{fetchbilldiv.BillPeriod}}</span>
+                        </div>
+                      </div>
+                      <div class="container" id="dv_BillMonth">
+                        <div class="row">
+                          <div class="col-md-4" style="padding-left:0">Bill Month</div>
+                          <span class="col-md-8">{{fetchbilldiv.BillMonth}}</span>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="btnFetchBill" class="col-md-12">
+                  <button class="btn btn-primary cus-recharge-btn" (click)="FetchBill()">Fetch Bill</button>
+                </div>
+
+                <div *ngIf="btnPay" class="col-md-12">
+                  <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Pay</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-     </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-outter-sec">
+          <div class="slider">
+            <ngx-slick-carousel class="carousel"
+                                #slickModal="slick-carousel"
+                                [config]="slideConfig">
+              <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                <img src="{{ slide.resourceUrl }}" alt="" width="100%">
+              </div>
+            </ngx-slick-carousel>
+          </div>
+         
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+  

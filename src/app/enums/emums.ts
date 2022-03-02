@@ -71,13 +71,16 @@ export enum APIUrl {
   GetAdvertisementPackage = 'GetAdvertisementPackage',
   GetAdvertisementList = 'GetAdvertisementList',
   GetAdvertisementListFooter = 'GetAdvertisementListFooter',
-  PostUpiPayment ='DoUPIPaymentB2C',
+  PostUpiPayment = 'DoUPIPaymentB2C',
+  B2COpDetail='B2COpDetail',
+  B2COpOptional = 'B2COpOptional',
+ 
   DomainName = 'RoundPay',
-   Domain='http://localhost:54343/',
-  // Domain='https://admin.prechargepay.in/',
+   Domain='http://localhost:54345/',
+  // Domain='https://roundpay.net/',
   //Domain = 'https://roundpay.net/',
-  // BaseURL='https://admin.prechargepay.in/WebApp/'
-  BaseURL = 'http://localhost:54343/WebApp/'
+  // BaseURL='https://roundpay.net/WebApp/'
+  BaseURL = 'http://localhost:54345/WebApp/'
 
 }
 export enum HeaderInfo {
@@ -85,7 +88,7 @@ export enum HeaderInfo {
   Domain = "85.10.235.153",
   AppID = "6072874e1f4b7000991915fa914318ed",
   Version = "1.0",
-  Title = "PrechargePay"
+  Title = "RoundPay"
 }
 export enum OpTypes {
   Prepaid = 1,

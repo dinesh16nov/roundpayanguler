@@ -42,14 +42,13 @@ export class ActionComponent implements OnInit {
     private apiSession: ApisessionService) { }
 
   ngOnInit() {
-    debugger
     this.hostDomain=APIUrl.Domain;
     this.getData();
   }
 
   getData()
   {
-   
+    debugger;
     if(!this.apiData.getSessionData(SessionVar.TransactionRequest))
     {
       this.apiData.gotoMenu('prepaid.html')

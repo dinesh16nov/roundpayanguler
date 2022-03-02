@@ -72,6 +72,7 @@ export interface CommonWeRequest{
     o2: string;
     o3: string;
     o4: string;
+    CustomerNo: string;
   }
   export interface RechargeReportReq{
       criteriaID:number,

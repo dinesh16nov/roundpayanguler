@@ -64,7 +64,7 @@ import { EducationFessComponent } from './content/pagecontainer/educationFess/ed
 import { ClubsAndAssociationComponent } from './content/pagecontainer/clubsAndAssociation/clubsAndAssociation.component';
 import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociationFee/barAssociationFee.component';
 import { TimerComponent } from './content/timer/timer.component';
-import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.component';
 import { AdvertisementComponent } from './content/advertisement/advertisement.component';
 import { AdvertisementFooterComponent } from './advertisement-footer/advertisement-footer.component';
@@ -148,6 +148,7 @@ import { UpiPaymentComponent } from './content/pagecontainer/upi-payment/upi-pay
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatSelectModule,
     FormsModule,
     NgbModule
     ],

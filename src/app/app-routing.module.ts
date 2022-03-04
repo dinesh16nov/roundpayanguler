@@ -44,6 +44,7 @@ import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociati
 import { WalletToWalletComponent } from './wallet-to-wallet/wallet-to-wallet.component';
 import { AdvertisementComponent } from './content/advertisement/advertisement.component';
 import { UpiPaymentComponent } from './content/pagecontainer/upi-payment/upi-payment.component';
+import { BillpaymentComponent } from './content/pagecontainer/billpayment/billpayment.component';
 const routes: Routes = [
   { path: '', redirectTo: '/prepaid.html', pathMatch: 'full' },
   { path: 'user', component:ReportsComponent,
@@ -93,7 +94,8 @@ const routes: Routes = [
       { path:'termsconditions.html', component:TermsconditionsComponent},
       {path:'privacypolicy.html',component:PrivacypolicyComponent},
       { path: 'refundAndCancellation.html', component: RefundAndCancellationComponent },
-      { path: 'UpiPayment.html', component: UpiPaymentComponent }
+      { path: 'UpiPayment.html', component: UpiPaymentComponent },
+      { path: 'Billpayment/:caller', component: BillpaymentComponent }
     ] 
   },
   { path:'rnd',component:RndComponent},

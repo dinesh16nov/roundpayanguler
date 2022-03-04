@@ -76,16 +76,21 @@ export enum APIUrl {
   B2COpOptional = 'B2COpOptional',
  
   DomainName = 'RoundPay',
-   Domain='http://localhost:54345/',
-  // Domain='https://roundpay.net/',
+  Domain = 'http://localhost:54343/',
+  BaseURL = 'http://localhost:54343/WebApp/'
+  
   //Domain = 'https://roundpay.net/',
   // BaseURL='https://roundpay.net/WebApp/'
-  BaseURL = 'http://localhost:54345/WebApp/'
+ 
+
+  //Domain = 'https://admin.prechargepay.in/',
+  //BaseURL = 'https://admin.prechargepay.in/WebApp/'
 
 }
 export enum HeaderInfo {
-  //Domain ="https://roundpay.net/",
-  Domain = "85.10.235.153",
+  Domain="pay2raj.in",
+  //Domain = "admin.prechargepay.in",
+  //Domain = "85.10.235.153",
   AppID = "6072874e1f4b7000991915fa914318ed",
   Version = "1.0",
   Title = "RoundPay"
@@ -112,7 +117,8 @@ export enum OpTypes {
   AddMoney = 37,
   UPI = 50,
   Advertisement = 83,
-  UpiPayment = 62
+  UpiPayment = 62,
+  FASTag=38
 }
 export enum ThemeType {
   Old = 1,

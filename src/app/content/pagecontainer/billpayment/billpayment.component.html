@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <div class="form-outter-sec">
           <div class="container">
-            <h3>Pay Your Electricity Bill</h3>
+            <h3>Pay Your  Bill</h3>
             <form [formGroup]="RechargeForm">
 
               <div class="form-group row">
@@ -45,7 +45,7 @@
                     </div>
 
                   </div>
-                  
+
                 </div>
 
 
@@ -81,39 +81,28 @@
                           <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" title="{{item.paramName}}" attr.data-txtOption="{{item|json}}" placeholder="Enter {{item.paramName}}">
                         </div>
                       </ng-template>
-
-
                     </div>
-                   
                   </div>
-
                 </div>
-
                 <ng-template #elseblock2>
                   <div *ngFor="let item of _Model;let i = index">
-
                     <label id='lblOption{{i+1}}'>{{item.displayName}}</label>
                     <!--<input type="Text" id='txtOption{{i+1}}' name="name" placeholder="Enter {{item.displayName}}" value="" />-->
                     <div class="form-group">
-                      <input type="text" id='txtOption{{i+1}}' title="{{item.displayName}} " class="form-control cus-form-control" attr.data-txtOption="{{item|json}}"  placeholder="Enter {{item.displayName}}">
+                      <input type="text" id='txtOption{{i+1}}' title="{{item.displayName}} " class="form-control cus-form-control" attr.data-txtOption="{{item|json}}" placeholder="Enter {{item.displayName}}">
                     </div>
                   </div>
-
-
                 </ng-template>
                 <div *ngIf="divCust" class="col-md-12">
                   <div class="form-group cus-form-check-inline">
                     <input type="text" [(ngModel)]="txtCust" title="Customer Mobile Number" formControlName="mobile" class="form-control cus-form-control" placeholder="Customer Mobile Number">
                   </div>
                 </div>
-
                 <div *ngIf="txtAmount" class="col-md-12">
                   <div class="form-group cus-form-check-inline">
-                    <input type="text" class="form-control cus-form-control" [readonly]='IsexactNessID' placeholder="Amount" [(ngModel)]="amount"  formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}">
-         
+                    <input type="text" class="form-control cus-form-control" [readonly]='IsexactNessID' placeholder="Amount" [(ngModel)]="amount" formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}">
                     <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
                       <span class="errorMsg">{{spnAmount}}</span>
-
                     </div>
                     <!-- <a href="" class="Browse-plan">  Fetch Bill</a> -->
                   </div>
@@ -166,20 +155,15 @@
                           <span class="col-md-8">{{fetchbilldiv.BillMonth}}</span>
                         </div>
                       </div>
-
-
                     </div>
                   </div>
                 </div>
-
                 <div *ngIf="msg.length>0">
                   <span class="errorMsg">{{msg}}</span>
-
                 </div>
                 <div *ngIf="btnFetchBill && !txtAmount" class="col-md-12">
                   <button class="btn btn-primary cus-recharge-btn" (click)="FetchBill()">Fetch Bill</button>
                 </div>
-
                 <div *ngIf="btnPay" class="col-md-12">
                   <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Pay</button>
                 </div>
@@ -199,11 +183,10 @@
               </div>
             </ngx-slick-carousel>
           </div>
-         
         </div>
       </div>
     </div>
   </div>
 </div>
 
-  
+

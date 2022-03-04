@@ -9,8 +9,7 @@ import { ApidataService } from './apidata.service';
 })
 export class AuthguardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree> {
-    debugger
-    if(!this.auth.IsAuth()){
+    if (!this.auth.IsAuth()){
       this.apiData.gotoMenu('/');
     }
     console.log(this.auth.IsAuth());

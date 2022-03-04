@@ -136,7 +136,8 @@ export class ApidataService {
     }
   }
   getOperator(OpType)
-  { 
+  {
+   
     if(!this.getSessionData(SessionVar.BaseData))
     {     
       this.getBaseData(); 

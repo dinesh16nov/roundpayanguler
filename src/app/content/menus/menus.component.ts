@@ -28,28 +28,25 @@ export class MenusComponent implements OnInit {
     }
 
   ngOnInit() {
-
     if (this.apiData.subsMenuChange==undefined) {    
       this.apiData.subsMenuChange = this.apiData.invokeMenuChangeFunction
       .subscribe((name:string) => {    
         this.loadOtherComponent();
-      });    
+      });                                
     }
     if (this.apiData.subsMenuChange2==undefined) {    
       this.apiData.subsMenuChange2 = this.apiData.invokeMenuChangeFunction2
-      .subscribe((name:string) => {    
-        this.loadMenuComponent();
-      });    
+      .subscribe((name:string) => {  
+        this.loadMenuComponent();      
+      });                             
     }
     this.getMenus();
   }
 
   getMenus(i=0)
   {
- 
     if(localStorage.getItem(SessionVar.OperatorList))
     {
-      
       this.menus=JSON.parse(localStorage.getItem(SessionVar.OperatorList));
       this.displayMenu();
     }
@@ -81,13 +78,18 @@ export class MenusComponent implements OnInit {
   }  
   getRouteName(id)
   {
-    var routename
+    debugger;
+    var routename;
+    var caller = '0';
+     
+
+ 
     switch (id) {
       case OpTypes.Prepaid:
         routename= 'prepaid.html'
         break;
       case OpTypes.PostPaid:
-        routename= 'postpaid.html'
+        routename = 'postpaid.html'
         break;
       case OpTypes.DTH:
         routename= 'dth.html'
@@ -140,10 +142,17 @@ export class MenusComponent implements OnInit {
       case OpTypes.UpiPayment:
         routename = "UpiPayment.html"
         break;
+      case OpTypes.FASTag:
+        routename = "FASTag.html"
+        break;
+      
       default:
         break;
     }
     this.removeClass()
+    if (this.getServiceid(id) == '11') {
+      routename = 'Billpayment/'+routename
+    }
     var element = document.getElementById("menu-"+id);
 
     if(!element.classList)
@@ -154,7 +163,14 @@ export class MenusComponent implements OnInit {
     {
       document.getElementsByClassName("tab-background")[0].classList.remove('auth');
       element.classList.add("active");
-      this.router.navigate(["/"+routename])
+     
+      this.router.navigate(["/" + routename])
+      //this.router.navigate(["/" + routename])
+      //  .then(() => {
+      //    window.location.reload();
+      //  });
+     
+    
     }
   }
 
@@ -213,7 +229,10 @@ export class MenusComponent implements OnInit {
          break;
          case 'barAssociationFee.html':
           id=OpTypes.BARAssociationFee
-          break;                     
+        break;
+         case 'UpiPayment.html':
+        id =OpTypes.UpiPayment
+        break;
       default:
         break;
     }
@@ -247,6 +266,18 @@ export class MenusComponent implements OnInit {
       els[i].classList.remove('active')
     }
     
+  }
+
+  getServiceid(a:number=0) {
+    
+    var b = JSON.parse(localStorage.getItem(SessionVar.OperatorList));
+    b = b.assignedOpTypes.filter(x => x.serviceID == a)[0]['serviceTypeID'];
+
+    return b;
+    
+     
+   
+
   }
 
 }

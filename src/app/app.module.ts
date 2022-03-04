@@ -70,6 +70,7 @@ import { AdvertisementComponent } from './content/advertisement/advertisement.co
 import { AdvertisementFooterComponent } from './advertisement-footer/advertisement-footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UpiPaymentComponent } from './content/pagecontainer/upi-payment/upi-payment.component';
+import { BillpaymentComponent } from './content/pagecontainer/billpayment/billpayment.component';
 
 
 @NgModule({
@@ -128,7 +129,8 @@ import { UpiPaymentComponent } from './content/pagecontainer/upi-payment/upi-pay
     WalletToWalletComponent,
     AdvertisementComponent,
     AdvertisementFooterComponent,
-    UpiPaymentComponent
+    UpiPaymentComponent,
+    BillpaymentComponent
   ],
   imports: [
     BrowserModule,

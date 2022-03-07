@@ -166,3 +166,62 @@ export interface UpdateProfilereq {
 
   editUser: WebAppUserProfileUpdateReq
 }
+export interface OpdetailEle {
+
+  accountName: string
+  accountNoKey: string
+  accountRemak: string
+  allowChannel: string
+  allowedChannel: number
+  billerID: string
+  charge: number
+  chargeAmtType: boolean
+  commSettingType: number
+  customerNoKey: string
+  dthCustInfoOID: number
+  dthhrefoid: number
+  exactNess: string
+  exactNessID: number
+  image: string
+  inSlab: boolean
+  ind: number
+  isAccountNumeric: boolean
+  isActive: boolean
+  isAmountValidation: boolean
+  isBBPS: boolean
+  isBilling: boolean
+  isGroupLeader: boolean
+  isPartial: boolean
+  isServiceActive: boolean
+  isSpecialOp: boolean
+  isTakeCustomerNum: boolean
+  isVisible: boolean
+  length: number
+  lengthMax: number
+  max: number
+  maxRange: number
+  min: number
+  minRange: number
+  name: string
+  oid: number
+  opType: number
+  operator: string
+  packageId: number
+  planDocName: string
+  planOID: string
+  rangeId: string
+  regExAccount: string
+  rofferOID: number
+  sCode: number
+  selfAssigned: boolean
+  serviceID: number
+  serviceName: string
+  spKey: string
+  startWith: string
+  stateID: number
+  tollFree: string
+  type: number
+  walletTypeID: number
+
+
+}

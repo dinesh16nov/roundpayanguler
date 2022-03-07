@@ -7,6 +7,7 @@ import { ApidataService } from 'src/app/services/apidata.service';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { OpdetailEle } from 'src/app/enums/apiRequest';
 import { FetchBillReq, TransactionReq } from 'src/app/enums/apiRequest';
 import { OpTypes, SessionVar } from 'src/app/enums/emums';
 import { ApiService } from 'src/app/services/apiservices.service';

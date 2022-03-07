@@ -165,12 +165,6 @@ export class MenusComponent implements OnInit {
       element.classList.add("active");
      
       this.router.navigate(["/" + routename])
-      //this.router.navigate(["/" + routename])
-      //  .then(() => {
-      //    window.location.reload();
-      //  });
-     
-    
     }
   }
 

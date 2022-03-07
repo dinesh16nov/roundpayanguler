@@ -410,3 +410,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .slick-next {
   right: 0px!important;
 }
+
+.mat-select-value {
+  color: #000 !important;
+}

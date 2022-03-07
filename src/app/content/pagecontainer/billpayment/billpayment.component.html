@@ -49,38 +49,36 @@
                 </div>
 
 
-                <div>
+                <div class="col-md-12">
+                  <div *ngIf="IsByModel2; else elseblock2">
 
+                    <div *ngFor="let item of _Model2;let i = index">
 
-                </div>
-                <div *ngIf="IsByModel2; else elseblock2">
-
-                  <div *ngFor="let item of _Model2;let i = index">
-
-                    <div class="form-group">
-                      <div *ngIf="item.isDropDown && IsModel3; else elseblock">
-                        <div *ngIf="filterArrey(item.id).length>0; else elseblock1">
-                          <mat-form-field appearance="fill">
-                            <mat-label></mat-label>
-                            <mat-select title="{{item.paramName}}l" name="food" (selectionChange)="ddlchange($event,i)">
-                              <mat-option *ngFor="let food of filterArrey(item.id)" [value]="food.value">
-                                {{food.value}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          <span class="">{{item.remark}}</span>
+                      <div class="form-group">
+                        <div *ngIf="item.isDropDown && IsModel3; else elseblock">
+                          <div *ngIf="filterArrey(item.id).length>0; else elseblock1">
+                            <mat-form-field appearance="fill">
+                              <mat-label></mat-label>
+                              <mat-select title="{{item.paramName}}l" name="food" (selectionChange)="ddlchange($event,i)">
+                                <mat-option *ngFor="let food of filterArrey(item.id)" [value]="food.value">
+                                  {{food.value}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <span class="text-black">{{item.remark}}</span>
+                          </div>
+                          <ng-template #elseblock1>
+                            <div class="form-group">
+                              <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" title="{{item.displayName}}" attr.data-txtOption="{{item|json}}" placeholder="Enter {{item.displayName}}">
+                            </div>
+                          </ng-template>
                         </div>
-                        <ng-template #elseblock1>
+                        <ng-template #elseblock>
                           <div class="form-group">
-                            <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" title="{{item.displayName}}" attr.data-txtOption="{{item|json}}" placeholder="Enter {{item.displayName}}">
+                            <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" title="{{item.paramName}}" attr.data-txtOption="{{item|json}}" placeholder="Enter {{item.paramName}}">
                           </div>
                         </ng-template>
                       </div>
-                      <ng-template #elseblock>
-                        <div class="form-group">
-                          <input type="text" id='txtOption{{i+1}}' class="form-control cus-form-control" title="{{item.paramName}}" attr.data-txtOption="{{item|json}}" placeholder="Enter {{item.paramName}}">
-                        </div>
-                      </ng-template>
                     </div>
                   </div>
                 </div>
@@ -107,57 +105,60 @@
                     <!-- <a href="" class="Browse-plan">  Fetch Bill</a> -->
                   </div>
                 </div>
-                <div *ngIf="BillDetail" class="card" id="billfetchdiv">
-                  <div class="PDAx">
-                    <div class="_1sdE">
-                      <a>Consumer Details<i class="icon-ArrowRight _3pMZ"></i></a>
-                    </div>
-                    <div class="_213c" style="font-size: larger;">
-                      <div class="container" id="dv_BillerID">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Biller ID</div>
-                          <span class="col-md-8">{{fetchbilldiv.BillerID}}</span>
-                        </div>
+                <div class="col-md-12">
+                  <div *ngIf="BillDetail" class="card p-2 mb-2" id="billfetchdiv">
+                    <div class="PDAx">
+                      <div class="_1sdE">
+                        <a>Consumer Details<i class="icon-ArrowRight _3pMZ"></i></a>
                       </div>
-                      <div class="container" id="dv_CName">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Name</div>
-                          <span class="col-md-8">{{fetchbilldiv.Name}}</span>
+                      <div class="_213c" style="font-size: larger;">
+                        <div class="container" id="dv_BillerID">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Biller ID</div>
+                            <span class="col-md-8">{{fetchbilldiv.BillerID}}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="container" id="dv_DueDate">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Due Date</div>
-                          <span class="col-md-8">{{fetchbilldiv.DueDate}}</span>
+                        <div class="container" id="dv_CName">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Name</div>
+                            <span class="col-md-8">{{fetchbilldiv.Name}}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="container" id="dv_BillNo">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Bill Number</div>
-                          <span class="col-md-8">{{fetchbilldiv.BillNumber}}</span>
+                        <div class="container" id="dv_DueDate">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Due Date</div>
+                            <span class="col-md-8">{{fetchbilldiv.DueDate}}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="container" id="dv_BillDate">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Bill Date</div>
-                          <span class="col-md-8">{{fetchbilldiv.BillDate}}</span>
+                        <div class="container" id="dv_BillNo">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Bill Number</div>
+                            <span class="col-md-8">{{fetchbilldiv.BillNumber}}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="container" id="dv_BillPeriod">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Bill Period</div>
-                          <span class="col-md-8">{{fetchbilldiv.BillPeriod}}</span>
+                        <div class="container" id="dv_BillDate">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Bill Date</div>
+                            <span class="col-md-8">{{fetchbilldiv.BillDate}}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="container" id="dv_BillMonth">
-                        <div class="row">
-                          <div class="col-md-4" style="padding-left:0">Bill Month</div>
-                          <span class="col-md-8">{{fetchbilldiv.BillMonth}}</span>
+                        <div class="container" id="dv_BillPeriod">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Bill Period</div>
+                            <span class="col-md-8">{{fetchbilldiv.BillPeriod}}</span>
+                          </div>
+                        </div>
+                        <div class="container" id="dv_BillMonth">
+                          <div class="row">
+                            <div class="col-md-4" style="padding-left:0">Bill Month</div>
+                            <span class="col-md-8">{{fetchbilldiv.BillMonth}}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                
                 <div *ngIf="msg.length>0">
                   <span class="errorMsg">{{msg}}</span>
                 </div>

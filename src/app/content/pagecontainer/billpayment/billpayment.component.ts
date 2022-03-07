@@ -435,38 +435,38 @@ export class BillpaymentComponent implements OnInit {
     this.errMobile = '';
     this.msg = '';
     let ret = true;
-    try {
-      if (this.req.accountNo == null || this.req.accountNo == undefined) {
+    //try {
+    //  if (this.req.accountNo == null || this.req.accountNo == undefined) {
 
-        this.errMobile = `Please enter a valid ${this._OpDetail.accountName}`;
-        ret = false;
-      }
-      if (this.req.accountNo.length > 0) {
-        if (this.req.accountNo.length > this._OpDetail.lengthMax) {
-          this.errMobile = `Please enter a valid ${this._OpDetail.accountName} .Length should be ${this._OpDetail.lengthMax}`
-          ret = false;
-        }
+    //    this.errMobile = `Please enter a valid ${this._OpDetail.accountName}`;
+    //    ret = false;
+    //  }
+    //  if (this.req.accountNo.length > 0) {
+    //    if (this.req.accountNo.length > this._OpDetail.lengthMax) {
+    //      this.errMobile = `Please enter a valid ${this._OpDetail.accountName} .Length should be ${this._OpDetail.lengthMax}`
+    //      ret = false;
+    //    }
 
-        if (this.req.CustomerNo == null || this.req.CustomerNo == undefined ) {
-          this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
-          ret = false;
+    //    if (this.req.CustomerNo == null || this.req.CustomerNo == undefined ) {
+    //      this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
+    //      ret = false;
 
 
-        }
-        else {
-          if (this.req.CustomerNo.length <= 10) {
-            this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
-            ret = false;
-          }
-        }
-        if (parseInt(this.req.CustomerNo) == NaN) {
-          this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
-          ret = false;
+    //    }
+    //    else {
+    //      if (this.req.CustomerNo.length <= 10) {
+    //        this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
+    //        ret = false;
+    //      }
+    //    }
+    //    if (parseInt(this.req.CustomerNo) == NaN) {
+    //      this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
+    //      ret = false;
 
-        }
-      }
-    }
-    catch (e) { return ret; }
+    //    }
+    //  }
+    //}
+    //catch (e) { return ret; }
 
 
     return ret;

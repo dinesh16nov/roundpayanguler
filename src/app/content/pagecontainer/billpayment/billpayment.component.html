@@ -158,11 +158,15 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div *ngIf="msg.length>0">
                   <span class="errorMsg">{{msg}}</span>
                 </div>
-                <div *ngIf="btnFetchBill && !txtAmount" class="col-md-12">
+
+
+                <div *ngIf="lodear"  class="col-md-12"> <aditya-pageloader></aditya-pageloader></div>
+                <div *ngIf="btnFetchBill && !txtAmount" class="col-md-12" >
+
                   <button class="btn btn-primary cus-recharge-btn" (click)="FetchBill()">Fetch Bill</button>
                 </div>
                 <div *ngIf="btnPay" class="col-md-12">

@@ -76,8 +76,8 @@ export enum APIUrl {
   B2COpOptional = 'B2COpOptional',
  
   DomainName = 'RoundPay',
-  Domain = 'http://localhost:54345/',
-  BaseURL = 'http://localhost:54345/WebApp/'
+  Domain = 'http://localhost:54343/',
+  BaseURL = 'http://localhost:54343/WebApp/'
   
   //Domain = 'https://roundpay.net/',
   // BaseURL='https://roundpay.net/WebApp/'

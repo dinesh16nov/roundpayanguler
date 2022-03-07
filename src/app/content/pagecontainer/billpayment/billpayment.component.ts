@@ -50,6 +50,7 @@ export class BillpaymentComponent implements OnInit {
   spnMobile = '';
   spnAmount = '';
   IsexactNessID = false
+  lodear = false;
 
   slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, autoplay: true, autoplaySpeed: 2000, arrows: true };
   fetchbilldiv = {
@@ -178,6 +179,7 @@ export class BillpaymentComponent implements OnInit {
 
 
   proceedToAction() {
+
     debugger;
     this.IsRechargeSubmitted = true;
     console.log(this.RechargeForm);
@@ -347,12 +349,14 @@ export class BillpaymentComponent implements OnInit {
     return this._Model3.filter(w => w.optionalID == para);
   }
   FetchBill() {
-    debugger;
+    if (this.lodear == true)
+      {
+      return;
+    }
+    this.lodear = true;
     this.setOption();
     if (this.chkvaldtion() == false) {
-
       return false;
-
     }
     if (this.authService.IsAuth()) {
       this._apisessionService.FetchBill(this.req).subscribe(resp => {
@@ -371,11 +375,12 @@ export class BillpaymentComponent implements OnInit {
           this.exactNessID = resp.bBPSResponse.exactness
           this.btnFetchBill = false;
           this.btnPay = true
+          this.lodear = false;
         }
         else {
 
           this.msg = resp.bBPSResponse != null ? resp.bBPSResponse.msg : resp.msg;
-
+          this.lodear = false;
         }
 
       })
@@ -432,45 +437,48 @@ export class BillpaymentComponent implements OnInit {
 
   }
   chkvaldtion() {
+    debugger
     this.errMobile = '';
     this.msg = '';
     let ret = true;
-    //try {
-    //  if (this.req.accountNo == null || this.req.accountNo == undefined) {
+    try {
+      if (this.req.accountNo == null || this.req.accountNo == undefined) {
 
-    //    this.errMobile = `Please enter a valid ${this._OpDetail.accountName}`;
-    //    ret = false;
-    //  }
-    //  if (this.req.accountNo.length > 0) {
-    //    if (this.req.accountNo.length > this._OpDetail.lengthMax) {
-    //      this.errMobile = `Please enter a valid ${this._OpDetail.accountName} .Length should be ${this._OpDetail.lengthMax}`
-    //      ret = false;
-    //    }
+        this.errMobile = `Please enter a valid ${this._OpDetail.accountName}`;
+        ret = false;
+      }
+      if (this.req.accountNo.length > 0) {
+        if (this.req.accountNo.length > this._OpDetail.lengthMax) {
+          this.errMobile = `Please enter a valid ${this._OpDetail.accountName} .Length should be ${this._OpDetail.lengthMax}`
+          ret = false;
+        }
 
-    //    if (this.req.CustomerNo == null || this.req.CustomerNo == undefined ) {
-    //      this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
-    //      ret = false;
+        if (this.req.CustomerNo == null || this.req.CustomerNo == undefined ) {
+          this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
+          ret = false;
 
 
-    //    }
-    //    else {
-    //      if (this.req.CustomerNo.length <= 10) {
-    //        this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
-    //        ret = false;
-    //      }
-    //    }
-    //    if (parseInt(this.req.CustomerNo) == NaN) {
-    //      this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
-    //      ret = false;
+        }
+        else {
+          if (this.req.CustomerNo.length > 10) {
+            this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
+            ret = false;
+          }
+        }
+        if (parseInt(this.req.CustomerNo) == NaN) {
+          this.msg = `Please enter a valid ${this.CustomerMobile} .Length should be 10.`;
+          ret = false;
 
-    //    }
-    //  }
-    //}
-    //catch (e) { return ret; }
+        }
+      }
+    }
+    catch (e) { return ret; }
 
 
     return ret;
   }
+
+
 }
 
 
